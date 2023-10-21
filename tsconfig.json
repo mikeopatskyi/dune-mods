@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "nodenext",
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "types": ["jest", "node"],
+    "allowJs": true,
+    "lib": ["es2022", "dom"],
+    "baseUrl": "./",
+    "paths": {
+      "@core/*": ["src/*"],
+      "@modules/*": ["src/modules/*"],
+      "@dom/*": ["src/modules/dom/*"],
+      "@event-emitter/*": ["src/modules/event-emitter/*"],
+      "@http-client/*": ["src/modules/http-client/*"],
+      "@state/*": ["src/modules/state/*"],
+      "@style-sheet/*": ["src/modules/style-sheet/*"],
+      "@form/*": ["src/modules/form/*"],
+    },
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}
