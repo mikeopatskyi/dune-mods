@@ -6,15 +6,21 @@ Welcome to the documentation for the `Dune` JavaScript utility package. `Dune` i
 
 ## Table of Contents
 
-- [DOM Manipulation](#dom-manipulation)
+- [DOM Manipulation](documentation/dom.md)
 
-- [CSS Manipulation](#css-manipulation)
+- [CSS Manipulation](documentation/style-sheet.md)
 
-- [Event Emitter](#event-emitter-module)
+- Event Emitter
 
-  - [Create Event Emitter (functional implementation)](#event-emitter--create-event-emitter)
-  - [EventEmitter Class (class implementation)](#event-emitter--event-emitter-class)
+  - [Create Event Emitter (functional implementation)](documentation/event-emitter.fn.md)
+  - [EventEmitter Class (class implementation)](documentation/event-emitter.class.md)
 
 - [State Management](#state-management)
 
-- [HTTP Client](#http-client)
+  - [Create State (functional implementation)](documentation/state.fn.md)
+  - [State Class (class implementation)](documentation/state.class.md)
+
+- HTTP Client
+
+  - [Create HTTP Client (functional implementation)](documentation/http-client.fn.md)
+  - [HTTP Client (class implementation)](documentation/state.class.md)
