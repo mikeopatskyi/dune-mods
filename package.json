@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mikeopatskyi/dune.git"
+    "url": "git+https://github.com/mikeopatskyi/dune-mods.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
