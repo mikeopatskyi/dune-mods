@@ -1,8 +1,8 @@
-src
+# src
 .nvmrc
 .prettierignore
 .prettierrc
 build.sh
-jest.config.js
-tsconfig.json
-tsconfig.test.json
+# jest.config.js
+# tsconfig.json
+# tsconfig.test.json
