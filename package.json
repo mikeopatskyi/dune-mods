@@ -25,7 +25,10 @@
     "cleanup": "rm -rf dist",
     "test": "jest"
   },
-  "author": "Mike Opatskyi",
+  "author": {
+    "name": "Mike Opatskyi",
+    "url": "https://github.com/mikeopatskyi"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=18",
