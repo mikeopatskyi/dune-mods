@@ -1,7 +1,19 @@
 {
   "name": "dune",
   "version": "0.0.2",
-  "description": "",
+  "description": "Dune is a versatile JavaScript utility package that simplifies common tasks in web development. It offers modules for DOM manipulation, event handling, state management, and HTTP requests, providing developers with efficient tools to streamline their frontend development workflow.",
+  "keywords": [
+    "JavaScript",
+    "Utility",
+    "DOM manipulation",
+    "Event handling",
+    "State management",
+    "HTTP requests",
+    "Frontend development",
+    "Web development",
+    "Functional programming",
+    "Class-based programming"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/mikeopatskyi/dune/"
@@ -13,7 +25,7 @@
     "cleanup": "rm -rf dist",
     "test": "jest"
   },
-  "author": "",
+  "author": "Mike Opatskyi",
   "license": "ISC",
   "engines": {
     "node": ">=18",
