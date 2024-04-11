@@ -12,7 +12,7 @@
     "moduleResolution": "nodenext",
     "outDir": "dist",
     "experimentalDecorators": true,
-    "types": ["jest", "node"],
+    "types": [],
     "allowJs": true,
     "lib": ["es2022", "dom"],
     "baseUrl": "./",
