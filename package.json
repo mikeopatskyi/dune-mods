@@ -1,6 +1,6 @@
 {
   "name": "dune",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Dune is a versatile JavaScript utility package that simplifies common tasks in web development. It offers modules for DOM manipulation, event handling, state management, and HTTP requests, providing developers with efficient tools to streamline their frontend development workflow.",
   "keywords": [
     "JavaScript",
