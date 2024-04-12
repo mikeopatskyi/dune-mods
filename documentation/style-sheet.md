@@ -36,7 +36,7 @@ Creates a `<style>` element and appends it to the document's `<head>` if a style
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 styleSheet.create.sheet('custom-style');
 ```
@@ -60,7 +60,7 @@ Searches for a stylesheet with the specified ID among the document's style sheet
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const sheet = styleSheet.find.sheet('custom-style');
 if (sheet) {
@@ -84,7 +84,7 @@ Deletes CSS rules at the specified indices within the given `CSSStyleSheet`.
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const sheet = styleSheet.find.sheet('custom-style');
 if (sheet) {
@@ -112,7 +112,7 @@ Generates a CSS rule text for defining CSS variables from the provided object.
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const variables = {
   primaryColor: '#ff0000',
@@ -168,7 +168,7 @@ Creates or updates CSS variables in the stylesheet identified by the specified I
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const variables = {
   primaryColor: '#ff0000',
@@ -195,7 +195,7 @@ Updates or adds CSS variables to the stylesheet identified by the specified ID.
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const updatedVariables = {
   primaryColor: '#00ff00',
@@ -221,7 +221,7 @@ Removes specified CSS variables from the stylesheet identified by the specified 
 **Example:**
 
 ```javascript
-import { styleSheet } from 'dune';
+import { styleSheet } from 'dune-mods';
 
 const variablesToDelete = ['primaryColor', 'fontSize'];
 styleSheet.delete.variables(variablesToDelete);

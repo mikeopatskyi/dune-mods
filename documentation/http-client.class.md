@@ -13,7 +13,7 @@ import {
   DuneHttpClient,
   DuneMiddleware,
   DuneRequestOptions,
-} from 'dune';
+} from 'dune-mods';
 
 const httpClient: DuneHttpClient = new HttpClient();
 ```
