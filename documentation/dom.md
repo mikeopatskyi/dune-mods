@@ -44,7 +44,7 @@ Retrieves elements matching the selector and extends the NodeList with additiona
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 dom.nodes('.my-selector').each((element, index) => {
   console.log(`Element ${index}:`, element);
@@ -65,7 +65,7 @@ Iterates over a NodeList or array of elements and applies a callback function to
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const elements = document.querySelectorAll('.my-selector');
 dom.eachNode(elements, (element, index) => {
@@ -88,7 +88,7 @@ Attaches an event listener to the target element(s) based on the selector.
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 // Example #1
 const button = document.querySelector('#my-button');
@@ -133,7 +133,7 @@ Binds an event listener to the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 // Example #1
 const button = document.querySelector('#my-button');
@@ -177,7 +177,7 @@ Adds a CSS class to the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const button = document.querySelector('#my-button');
 dom.addClassName(button, 'active');
@@ -197,7 +197,7 @@ Removes a CSS class from the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const button = document.querySelector('#my-button');
 dom.removeClassName(button, 'active');
@@ -217,7 +217,7 @@ Toggles a CSS class on the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const button = document.querySelector('#my-button');
 dom.toggleClassName(button, 'active');
@@ -238,7 +238,7 @@ Adds an attribute to the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const input = document.querySelector('#my-input');
 dom.addAttr(input, 'placeholder', 'Enter your name');
@@ -258,7 +258,7 @@ Removes an attribute from the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const input = document.querySelector('#my-input');
 dom.removeAttr(input, 'placeholder');
@@ -278,7 +278,7 @@ Toggles an attribute on the specified element(s).
 #### Example
 
 ```javascript
-import { dom } from 'dune';
+import { dom } from 'dune-mods';
 
 const checkbox = document.querySelector('#my-checkbox');
 dom.toggleAttr(checkbox, 'checked');
