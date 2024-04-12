@@ -24,7 +24,7 @@ The `event-emitter` module provides a lightweight event emitter implementation t
 **Example**
 
 ```javascript
-import { EventEmitter } from 'dune';
+import { EventEmitter } from 'dune-mods';
 
 // Create an instance of the EventEmitter
 const eventEmitter = new EventEmitter();

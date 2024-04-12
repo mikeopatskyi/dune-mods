@@ -28,7 +28,7 @@ An object with the following methods for event management:
 **Example**
 
 ```javascript
-import { createEventEmitter } from 'dune';
+import { createEventEmitter } from 'dune-mods';
 
 // Create an event emitter instance
 const eventEmitter = createEventEmitter();
@@ -52,7 +52,7 @@ eventEmitter.emit('myEvent', 'Hello', 'World');
 **Advanced Example**
 
 ```javascript
-import { createEventEmitter } from 'dune';
+import { createEventEmitter } from 'dune-mods';
 
 // Create an event emitter instance
 const eventEmitter = createEventEmitter();

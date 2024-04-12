@@ -7,7 +7,7 @@ The Dune HTTP Client is a lightweight and flexible HTTP client designed for use 
 To use the Dune HTTP Client in your project, you can import it as follows:
 
 ```typescript
-import { createHttpClient, DuneRequestOptions, DuneHttpClient } from 'dune';
+import { createHttpClient, DuneRequestOptions, DuneHttpClient } from 'dune-mods';
 
 const httpClient: DuneHttpClient = createHttpClient();
 ```
