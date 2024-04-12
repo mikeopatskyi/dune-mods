@@ -13,6 +13,10 @@ export interface DuneRequestOptions {
   onEnd?: (data?: any) => void;
   onSuccessEnd?: (data?: any) => void;
   onFailureEnd?: (error?: any) => void;
+  success?: (response: any) => void;
+  error?: (error: any) => void;
+  finally?: () => void;
+  rollback?: () => void;
   middleware?: DuneMiddleware[];
   params?: { [key: string]: string | number | boolean };
 }
@@ -26,13 +30,13 @@ export interface DuneHttpClient {
 }
 
 export interface DuneHttpClientMethods {
-  get: 'GET',
-  head: 'HEAD',
-  post: 'POST',
-  put: 'PUT',
-  delete: 'DELETE',
-  connect: 'CONNECT',
-  options: 'OPTIONS',
-  trace: 'TRACE',
-  patch: 'PATCH',
+  get: 'GET';
+  head: 'HEAD';
+  post: 'POST';
+  put: 'PUT';
+  delete: 'DELETE';
+  connect: 'CONNECT';
+  options: 'OPTIONS';
+  trace: 'TRACE';
+  patch: 'PATCH';
 }
