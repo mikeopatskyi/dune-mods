@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("whatwg-fetch");
 class HttpClient {
     middleware;
+    intervalId;
     constructor() {
         this.middleware = [];
+        this.intervalId = null;
     }
     /**
      * Makes an HTTP request based on the provided options.
@@ -106,6 +108,27 @@ class HttpClient {
         });
         // Parse the response body as JSON
         return response.json();
+    }
+    /**
+     * Starts fetching at regular intervals based on the provided options.
+     * @param options - The options for interval-based fetching.
+     */
+    startFetchingInterval(options) {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+        }
+        this.intervalId = setInterval(() => {
+            this.request(options);
+        }, options.interval);
+    }
+    /**
+     * Stops interval-based fetching.
+     */
+    stopFetchingInterval() {
+        if (this.intervalId) {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        }
     }
     /**
      * Adds a middleware function to the HTTP client instance.

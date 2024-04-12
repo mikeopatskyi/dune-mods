@@ -2,6 +2,7 @@ import { DuneHttpClient, DuneMiddleware, DuneRequestOptions } from '../../types'
 import 'whatwg-fetch';
 export default class HttpClient implements DuneHttpClient {
     private middleware;
+    private intervalId;
     constructor();
     /**
      * Makes an HTTP request based on the provided options.
@@ -18,6 +19,17 @@ export default class HttpClient implements DuneHttpClient {
      * @returns A promise that resolves to the JSON response.
      */
     private executeRequest;
+    /**
+     * Starts fetching at regular intervals based on the provided options.
+     * @param options - The options for interval-based fetching.
+     */
+    startFetchingInterval(options: DuneRequestOptions & {
+        interval: number;
+    }): void;
+    /**
+     * Stops interval-based fetching.
+     */
+    stopFetchingInterval(): void;
     /**
      * Adds a middleware function to the HTTP client instance.
      * Middleware functions are applied to requests in the order they are added.
