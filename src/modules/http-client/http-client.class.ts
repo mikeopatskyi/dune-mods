@@ -1,4 +1,5 @@
 import { DuneHttpClient, DuneMiddleware, DuneRequestOptions } from '@core/types';
+import 'whatwg-fetch';
 
 export default class HttpClient implements DuneHttpClient {
   private middleware: DuneMiddleware[];

@@ -1,4 +1,5 @@
 import { DuneRequestOptions, DuneHttpClient } from '@core/types';
+import 'whatwg-fetch';
 
 /**
  * Factory function that creates a DuneHttpClient instance.

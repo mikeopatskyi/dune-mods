@@ -12,6 +12,10 @@ export interface DuneRequestOptions {
     onEnd?: (data?: any) => void;
     onSuccessEnd?: (data?: any) => void;
     onFailureEnd?: (error?: any) => void;
+    success?: (response: any) => void;
+    error?: (error: any) => void;
+    finally?: () => void;
+    rollback?: () => void;
     middleware?: DuneMiddleware[];
     params?: {
         [key: string]: string | number | boolean;
