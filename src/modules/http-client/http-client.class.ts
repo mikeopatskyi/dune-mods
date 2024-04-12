@@ -3,9 +3,11 @@ import 'whatwg-fetch';
 
 export default class HttpClient implements DuneHttpClient {
   private middleware: DuneMiddleware[];
+  private intervalId: number | null;
 
   constructor() {
     this.middleware = [];
+    this.intervalId = null;
   }
 
   /**
@@ -128,6 +130,30 @@ export default class HttpClient implements DuneHttpClient {
 
     // Parse the response body as JSON
     return response.json();
+  }
+
+  /**
+   * Starts fetching at regular intervals based on the provided options.
+   * @param options - The options for interval-based fetching.
+   */
+  public startFetchingInterval(options: DuneRequestOptions & { interval: number }): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+
+    this.intervalId = setInterval(() => {
+      this.request(options);
+    }, options.interval);
+  }
+
+  /**
+   * Stops interval-based fetching.
+   */
+  public stopFetchingInterval(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
   }
 
   /**

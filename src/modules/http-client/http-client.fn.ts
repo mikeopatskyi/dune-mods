@@ -7,6 +7,7 @@ import 'whatwg-fetch';
  * @returns A DuneHttpClient instance.
  */
 const createHttpClient = (): DuneHttpClient => {
+  let intervalId: number | null = null;
   /**
    * Asynchronously makes an HTTP request using the provided options.
    *
@@ -121,8 +122,32 @@ const createHttpClient = (): DuneHttpClient => {
     }
   };
 
+  /**
+   * Starts fetching at regular intervals based on the provided options.
+   * @param options - The options for interval-based fetching.
+   */
+  const startFetchingInterval = (options: DuneRequestOptions & { interval: number }): void => {
+    if (intervalId) {
+      clearInterval(intervalId);
+    }
+
+    intervalId = setInterval(() => {
+      request(options);
+    }, options.interval);
+  };
+
+  /**
+   * Stops interval-based fetching.
+   */
+  const stopFetchingInterval = (): void => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  };
+
   // Return the request function as the request method of the DuneHttpClient
-  return { request };
+  return { request, startFetchingInterval, stopFetchingInterval };
 };
 
 export default createHttpClient;

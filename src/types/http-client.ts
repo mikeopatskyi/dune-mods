@@ -27,6 +27,8 @@ export interface DuneMiddleware {
 
 export interface DuneHttpClient {
   request: (options: DuneRequestOptions) => Promise<any>;
+  startFetchingInterval: (options: DuneRequestOptions & { interval: number }) => void;
+  stopFetchingInterval: () => void;
 }
 
 export interface DuneHttpClientMethods {
