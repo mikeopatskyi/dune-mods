@@ -14,14 +14,7 @@ const createHttpClient = (): DuneHttpClient => {
    * @param options - The options for the request, including the method, URL, headers, body, and callbacks.
    * @returns A Promise that resolves to the response data, or rejects with an error.
    */
-  const request = async (
-    options: DuneRequestOptions & {
-      success?: (response: any) => void; // Callback function to be invoked with the response data on success
-      error?: (error: any) => void; // Callback function to be invoked with the error on failure
-      finally?: () => void; // Callback function to be invoked regardless of the request outcome
-      rollback?: () => void; // Callback function to be invoked in case of an error before invoking the error callback
-    }
-  ): Promise<any> => {
+  const request = async (options: DuneRequestOptions): Promise<any> => {
     // Invoke the onStart callback if provided
     options.onStart && options.onStart();
 
@@ -93,32 +86,22 @@ const createHttpClient = (): DuneHttpClient => {
       // Invoke the onEnd callback if provided
       options.onEnd && options.onEnd(data);
 
-      // Invoke the onSuccessEnd callback if provided
-      options?.onSuccessEnd && options.onSuccessEnd(data);
+      // Invoke the onSuccess callback if provided
+      options?.onSuccess && options.onSuccess(data);
 
       return data;
     } catch (error) {
-      // Invoke rollback before error callback
-      options?.rollback && options.rollback();
-
-      // Invoke the error callback if provided
-      options?.error &&
-        (!options?.rollback || typeof options?.rollback === 'undefined') &&
-        options.error(error);
-
       // Invoke the onEnd callback if provided even in case of an error
       options?.onEnd && options.onEnd(error);
 
       // Invoke the onFailureEnd callback if provided even in case of an error
-      options?.onFailureEnd &&
-        (!options?.rollback || typeof options?.rollback === 'undefined') &&
-        options.onFailureEnd(error);
+      options?.onFailure && options.onFailure(error);
 
       // Rethrow the error to propagate it to the caller
       throw error;
     } finally {
       // Invoke the finally callback if provided
-      options.finally && options.finally();
+      options?.finally && options.finally();
     }
   };
 

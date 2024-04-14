@@ -4,21 +4,21 @@ export interface DuneHeader {
 }
 
 export interface DuneRequestOptions {
+  // params
   method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
   url: string;
   headers?: DuneHeader[];
   body?: any;
   delay?: number;
-  onStart?: () => void;
-  onEnd?: (data?: any) => void;
-  onSuccessEnd?: (data?: any) => void;
-  onFailureEnd?: (error?: any) => void;
-  success?: (response: any) => void;
-  error?: (error: any) => void;
-  finally?: () => void;
-  rollback?: () => void;
   middleware?: DuneMiddleware[];
   params?: { [key: string]: string | number | boolean };
+  // events / methods
+  onStart?: () => void;
+  onEnd?: (data?: any) => void;
+  onSuccess?: (data?: any) => void;
+  onFailure?: (error?: any) => void;
+  onFailure?: (error?: any) => void;
+  finally?: (error?: any) => void;
 }
 
 export interface DuneMiddleware {
