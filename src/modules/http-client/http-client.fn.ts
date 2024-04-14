@@ -16,7 +16,7 @@ const createHttpClient = (): DuneHttpClient => {
    */
   const request = async (options: DuneRequestOptions): Promise<any> => {
     // Invoke the onStart callback if provided
-    options.onStart && options.onStart();
+    options?.onStart && options.onStart();
 
     // Delay the request if a delay is specified in the options
     if (options.delay) {
@@ -80,11 +80,8 @@ const createHttpClient = (): DuneHttpClient => {
       // Parse the response data
       const data = await response.json();
 
-      // Invoke the success callback if provided
-      options?.success && options.success(data);
-
       // Invoke the onEnd callback if provided
-      options.onEnd && options.onEnd(data);
+      options?.onEnd && options.onEnd(data);
 
       // Invoke the onSuccess callback if provided
       options?.onSuccess && options.onSuccess(data);

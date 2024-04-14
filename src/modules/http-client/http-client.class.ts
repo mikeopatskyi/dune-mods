@@ -20,9 +20,7 @@ export default class HttpClient implements DuneHttpClient {
   public async request(options: DuneRequestOptions): Promise<any> {
     try {
       // Invoke the onStart callback if provided
-      if (options.onStart) {
-        options.onStart();
-      }
+      options?.onStart && options.onStart();
 
       // Delay the request if a delay is specified
       if (options.delay) {
