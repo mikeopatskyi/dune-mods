@@ -17,7 +17,6 @@ export interface DuneRequestOptions {
   onEnd?: (data?: any) => void;
   onSuccess?: (data?: any) => void;
   onFailure?: (error?: any) => void;
-  onFailure?: (error?: any) => void;
   finally?: (error?: any) => void;
 }
 

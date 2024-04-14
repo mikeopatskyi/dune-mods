@@ -8,18 +8,15 @@ export interface DuneRequestOptions {
     headers?: DuneHeader[];
     body?: any;
     delay?: number;
-    onStart?: () => void;
-    onEnd?: (data?: any) => void;
-    onSuccessEnd?: (data?: any) => void;
-    onFailureEnd?: (error?: any) => void;
-    success?: (response: any) => void;
-    error?: (error: any) => void;
-    finally?: () => void;
-    rollback?: () => void;
     middleware?: DuneMiddleware[];
     params?: {
         [key: string]: string | number | boolean;
     };
+    onStart?: () => void;
+    onEnd?: (data?: any) => void;
+    onSuccess?: (data?: any) => void;
+    onFailure?: (error?: any) => void;
+    finally?: (error?: any) => void;
 }
 export interface DuneMiddleware {
     (options: DuneRequestOptions): DuneRequestOptions;

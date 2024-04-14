@@ -16,7 +16,7 @@ const createHttpClient = () => {
      */
     const request = async (options) => {
         // Invoke the onStart callback if provided
-        options.onStart && options.onStart();
+        options?.onStart && options.onStart();
         // Delay the request if a delay is specified in the options
         if (options.delay) {
             await new Promise((resolve) => setTimeout(resolve, options.delay));
@@ -66,33 +66,23 @@ const createHttpClient = () => {
             });
             // Parse the response data
             const data = await response.json();
-            // Invoke the success callback if provided
-            options?.success && options.success(data);
             // Invoke the onEnd callback if provided
-            options.onEnd && options.onEnd(data);
-            // Invoke the onSuccessEnd callback if provided
-            options?.onSuccessEnd && options.onSuccessEnd(data);
+            options?.onEnd && options.onEnd(data);
+            // Invoke the onSuccess callback if provided
+            options?.onSuccess && options.onSuccess(data);
             return data;
         }
         catch (error) {
-            // Invoke rollback before error callback
-            options?.rollback && options.rollback();
-            // Invoke the error callback if provided
-            options?.error &&
-                (!options?.rollback || typeof options?.rollback === 'undefined') &&
-                options.error(error);
             // Invoke the onEnd callback if provided even in case of an error
             options?.onEnd && options.onEnd(error);
             // Invoke the onFailureEnd callback if provided even in case of an error
-            options?.onFailureEnd &&
-                (!options?.rollback || typeof options?.rollback === 'undefined') &&
-                options.onFailureEnd(error);
+            options?.onFailure && options.onFailure(error);
             // Rethrow the error to propagate it to the caller
             throw error;
         }
         finally {
             // Invoke the finally callback if provided
-            options.finally && options.finally();
+            options?.finally && options.finally();
         }
     };
     /**
