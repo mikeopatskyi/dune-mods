@@ -7,16 +7,16 @@ export interface DuneRequestOptions {
   // params
   method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
   url: string;
-  headers?: DuneHeader[];
+  headers?: DuneHeader[] | { [key: string]: any };
   body?: any;
   delay?: number;
   middleware?: DuneMiddleware[];
   params?: { [key: string]: string | number | boolean };
   // events / methods
-  onStart?: () => void;
-  onEnd?: (data?: any) => void;
-  onSuccess?: (data?: any) => void;
-  onFailure?: (error?: any) => void;
+  started?: () => void;
+  ended?: (data?: any) => void;
+  success?: (data?: any) => void;
+  failure?: (error?: any) => void;
   finally?: (error?: any) => void;
 }
 
@@ -28,6 +28,11 @@ export interface DuneHttpClient {
   request: (options: DuneRequestOptions) => Promise<any>;
   startFetchingInterval: (options: DuneRequestOptions & { interval: number }) => void;
   stopFetchingInterval: () => void;
+  onStart: () => void;
+  onEnd: (data?: any) => void;
+  onSuccess: (data?: any) => void;
+  onFailure: (error?: any) => void;
+  onFinally: (error?: any) => void;
 }
 
 export interface DuneHttpClientMethods {
