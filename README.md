@@ -21,18 +21,3 @@ yarn add dune-mods
 - [DOM Manipulation](documentation/dom.md)
 
 - [CSS Manipulation](documentation/style-sheet.md)
-
-- Event Emitter
-
-  - [Create Event Emitter (functional implementation)](documentation/event-emitter.fn.md)
-  - [EventEmitter Class (class implementation)](documentation/event-emitter.class.md)
-
-- [State Management](#state-management)
-
-  - [Create State (functional implementation)](documentation/state.fn.md)
-  - [State Class (class implementation)](documentation/state.class.md)
-
-- HTTP Client
-
-  - [Create HTTP Client (functional implementation)](documentation/http-client.fn.md)
-  - [HTTP Client (class implementation)](documentation/state.class.md)

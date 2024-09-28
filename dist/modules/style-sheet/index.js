@@ -2,9 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.styleSheet = void 0;
 /**
- * Creates a <style> element and appends it to the document's <head> if a stylesheet with the specified id doesn't exist.
- *
- * @param {string} id - The ID of the <style> element to be created. Default value is 'theme-style'.
+ * The `styleSheet` object provides methods for creating, finding, deleting, and updating stylesheets and CSS rules in the document.
  */
 exports.styleSheet = {
     create: {
@@ -47,17 +45,33 @@ exports.styleSheet = {
     delete: {
         /**
          * Deletes CSS rules at the specified indices within the given styleSheet.
+         * Ensures that the styleSheet contains rules before attempting to delete.
          *
          * @param {CSSStyleSheet} styleSheet - The CSSStyleSheet object from which rules will be deleted.
          * @param {number[]} indices - An array of indices representing the positions of rules to be deleted.
          */
         rules: (styleSheet, indices) => {
-            for (let i = indices.length - 1; i >= 0; i--) {
-                styleSheet.deleteRule(indices[i]);
+            // Check if the stylesheet contains rules before attempting to delete
+            if (styleSheet.cssRules.length > 0) {
+                for (let i = indices.length - 1; i >= 0; i--) {
+                    // Ensure the index is within the bounds of the stylesheet's rules
+                    if (indices[i] < styleSheet.cssRules.length) {
+                        try {
+                            styleSheet.deleteRule(indices[i]);
+                        }
+                        catch (e) {
+                            console.error(`Failed to delete rule at index ${indices[i]}:`, e);
+                        }
+                    }
+                }
+            }
+            else {
+                console.warn('Attempted to delete rules from an empty stylesheet.');
             }
         },
         /**
          * Removes specified CSS variables from the stylesheet identified by the specified id.
+         * Ensures that the appropriate CSS rules are deleted safely.
          *
          * @param {string[]} variableNames - An array of CSS variable names to be removed.
          * @param {string} id - The ID of the stylesheet from which variables will be removed. Default value is 'theme-style'.
@@ -74,7 +88,9 @@ exports.styleSheet = {
                         ruleIndicesToDelete.push(i);
                     }
                 }
-                exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+                if (ruleIndicesToDelete.length > 0) {
+                    exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+                }
             }
         },
     },
@@ -108,6 +124,7 @@ exports.styleSheet = {
     },
     /**
      * Creates or updates CSS variables in the stylesheet identified by the specified ID.
+     * Safely deletes existing :root rules before inserting the new ones.
      *
      * @param {DuneCSSVariables} variables - An object containing CSS variable names and their values.
      * @param {boolean} transform - A boolean flag indicating whether to transform variable names to CSS custom property syntax. Default value is true.
@@ -124,13 +141,16 @@ exports.styleSheet = {
                     ruleIndicesToDelete.push(i);
                 }
             }
-            exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+            if (ruleIndicesToDelete.length > 0) {
+                exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+            }
             const ruleText = exports.styleSheet.generateCSSRuleText(variables, transform);
             sheet.insertRule(ruleText);
         }
     },
     /**
      * Updates or adds CSS variables to the stylesheet identified by the specified ID.
+     * Ensures that existing :root rules are safely deleted before updating with the new ones.
      *
      * @param {DuneCSSVariables} variables - An object containing CSS variable names and their updated values.
      * @param {boolean} transform - A boolean flag indicating whether to transform variable names to CSS custom property syntax. Default value is true.
@@ -147,7 +167,9 @@ exports.styleSheet = {
                     ruleIndicesToDelete.push(i);
                 }
             }
-            exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+            if (ruleIndicesToDelete.length > 0) {
+                exports.styleSheet.delete.rules(sheet, ruleIndicesToDelete);
+            }
             const ruleText = exports.styleSheet.generateCSSRuleText(variables, transform);
             sheet.insertRule(ruleText);
         }
