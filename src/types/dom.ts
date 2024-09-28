@@ -19,8 +19,9 @@ export interface DuneDom {
   ): void;
   bind(
     event: string,
-    element: string | EventTarget | Element | NodeList | Document | Window | null | undefined,
-    handler: EventListenerOrEventListenerObject
+    delegateSelector: string,
+    handler: EventListenerOrEventListenerObject,
+    parentElement: Document | HTMLElement | Window
   ): void;
   unbind(
     event: string,

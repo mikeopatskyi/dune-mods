@@ -169,19 +169,35 @@ export const dom: DuneDom = (() => {
   ): void => {
     // Event delegation using parent element
     const eventHandler = (e: Event) => {
-      // Ensure the event target or one of its ancestors matches the selector
-      const targetElement = e.target as Element;
-      const delegateTarget = targetElement.closest(delegateSelector);
+      const targetElement = e.target as HTMLElement;
 
-      // If the delegate target is found and is inside the parentElement, invoke the handler
-      if (delegateTarget && (parentElement as HTMLElement).contains(delegateTarget)) {
-        // Call the handler with the delegate target as `this`
-        (handler as EventListener).call(delegateTarget, e);
+      // Ensure the event target is an element and can call 'closest'
+      if (targetElement instanceof HTMLElement && typeof delegateSelector === 'string') {
+        const delegateTarget = targetElement.closest(delegateSelector);
+
+        // Ensure delegateTarget exists and is a valid child of parentElement
+        if (
+          delegateTarget &&
+          parentElement instanceof Document &&
+          parentElement.body.contains(delegateTarget)
+        ) {
+          (handler as EventListener).call(delegateTarget, e);
+        } else if (
+          delegateTarget &&
+          parentElement instanceof HTMLElement &&
+          parentElement.contains(delegateTarget)
+        ) {
+          (handler as EventListener).call(delegateTarget, e);
+        }
       }
     };
 
     // Bind event listener to the parent element
-    parentElement.addEventListener(event, eventHandler);
+    if (parentElement instanceof HTMLElement || parentElement instanceof Document) {
+      parentElement.addEventListener(event, eventHandler);
+    } else if (parentElement instanceof Window) {
+      parentElement.addEventListener(event, eventHandler);
+    }
   };
 
   /**

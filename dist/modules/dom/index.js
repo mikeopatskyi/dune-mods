@@ -122,17 +122,30 @@ exports.dom = (() => {
     const bind = (event, delegateSelector, handler, parentElement = document) => {
         // Event delegation using parent element
         const eventHandler = (e) => {
-            // Ensure the event target or one of its ancestors matches the selector
             const targetElement = e.target;
-            const delegateTarget = targetElement.closest(delegateSelector);
-            // If the delegate target is found and is inside the parentElement, invoke the handler
-            if (delegateTarget && parentElement.contains(delegateTarget)) {
-                // Call the handler with the delegate target as `this`
-                handler.call(delegateTarget, e);
+            // Ensure the event target is an element and can call 'closest'
+            if (targetElement instanceof HTMLElement && typeof delegateSelector === 'string') {
+                const delegateTarget = targetElement.closest(delegateSelector);
+                // Ensure delegateTarget exists and is a valid child of parentElement
+                if (delegateTarget &&
+                    parentElement instanceof Document &&
+                    parentElement.body.contains(delegateTarget)) {
+                    handler.call(delegateTarget, e);
+                }
+                else if (delegateTarget &&
+                    parentElement instanceof HTMLElement &&
+                    parentElement.contains(delegateTarget)) {
+                    handler.call(delegateTarget, e);
+                }
             }
         };
         // Bind event listener to the parent element
-        parentElement.addEventListener(event, eventHandler);
+        if (parentElement instanceof HTMLElement || parentElement instanceof Document) {
+            parentElement.addEventListener(event, eventHandler);
+        }
+        else if (parentElement instanceof Window) {
+            parentElement.addEventListener(event, eventHandler);
+        }
     };
     /**
      * Removes a bound event listener from the specified element(s) based on the provided selector.

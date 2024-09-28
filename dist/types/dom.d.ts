@@ -10,7 +10,7 @@ export interface DuneDom {
     nodes(selector: string): NodeListOf<Element> & DuneDomElement;
     eachNode(elements: NodeListOf<Element> | Node[], callback: () => void): void;
     on(event: string, selector: string | EventTarget | Element | NodeList | Document | Window | null | undefined, handler: EventListenerOrEventListenerObject): void;
-    bind(event: string, element: string | EventTarget | Element | NodeList | Document | Window | null | undefined, handler: EventListenerOrEventListenerObject): void;
+    bind(event: string, delegateSelector: string, handler: EventListenerOrEventListenerObject, parentElement: Document | HTMLElement | Window): void;
     unbind(event: string, element: string | EventTarget | Element | NodeList | Document | Window | null | undefined, handler?: EventListenerOrEventListenerObject): void;
     triggerEvent(event: string, element: string | Element | NodeList | EventTarget | null | undefined, options?: EventInit): void;
     hasClassName(element: string | Element | NodeList, className: string): boolean;
