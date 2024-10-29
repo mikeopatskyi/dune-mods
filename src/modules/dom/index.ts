@@ -275,21 +275,21 @@ export const dom: DuneDom = (() => {
    * Triggers an event on the specified element(s).
    * @param event - The name of the event to trigger (e.g., "click", "focus", "submit").
    * @param element - A selector string, Element, NodeList, or EventTarget on which to trigger the event.
-   * @param options - (Optional) An object to customize event properties such as bubbles, cancelable, and more.
+   * @param options - (Optional) An object to customize event properties such as bubbles, cancelable, detail, and more.
    */
   const triggerEvent = (
     event: string,
     element: string | Element | NodeList | EventTarget | null | undefined,
-    options?: EventInit
+    options: EventInit & { detail?: any } = {}
   ): void => {
-    // Create a new event with the specified type and options
-    const evt = new Event(event, {
-      bubbles: options?.bubbles ?? true,
-      cancelable: options?.cancelable ?? true,
-      ...options,
-    });
+    const { detail, ...eventOptions } = options;
 
-    // Handle multiple elements or a single element
+    // Use CustomEvent if 'detail' is provided; otherwise, fallback to Event
+    const evt = detail
+      ? new CustomEvent(event, { ...eventOptions, detail })
+      : new Event(event, { bubbles: true, cancelable: true, ...eventOptions });
+
+    // Handle triggering on multiple elements or a single element
     const triggerOnElement = (el: Element | EventTarget) => {
       el.dispatchEvent(evt);
     };
